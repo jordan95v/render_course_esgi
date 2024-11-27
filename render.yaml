@@ -27,7 +27,7 @@ services:
   - key: DB_NAME
     fromDatabase:
       name: render-course-postgresl
-      property: databaseName
+      property: database
   - key: DB_PASS
     fromDatabase:
       name: render-course-postgresl
