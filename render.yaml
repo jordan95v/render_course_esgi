@@ -17,19 +17,25 @@ services:
   plan: free
   envVars:
   - key: DB_PORT
-    sync: false
+    fromDatabase:
+      name: render-course-postgresl
+      property: port
   - key: DB_HOST
     fromDatabase:
       name: render-course-postgresl
       property: host
   - key: DB_NAME
-    sync: false
+    fromDatabase:
+      name: render-course-postgresl
+      property: name
   - key: DB_PASS
     fromDatabase:
       name: render-course-postgresl
       property: password
   - key: DB_USER
-    sync: false
+    fromDatabase:
+      name: render-course-postgresl
+      property: user
   region: frankfurt
   buildCommand: npm i
   startCommand: npm start
