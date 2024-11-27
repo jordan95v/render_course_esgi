@@ -1,0 +1,36 @@
+# Exported from Render on 2024-11-27T13:34:33Z
+databases:
+- name: render-course-postgresl
+  databaseName: render_course_postgresl
+  user: render_course_postgresl_user
+  plan: free
+  region: frankfurt
+  ipAllowList:
+  - source: 0.0.0.0/0
+    description: everywhere
+  postgresMajorVersion: "16"
+services:
+- type: web
+  name: render-course-esgi
+  runtime: node
+  repo: https://github.com/jordan95v/render_course_esgi
+  plan: free
+  envVars:
+  - key: DB_PORT
+    sync: false
+  - key: DB_HOST
+    fromDatabase:
+      name: render-course-postgresl
+      property: host
+  - key: DB_NAME
+    sync: false
+  - key: DB_PASS
+    fromDatabase:
+      name: render-course-postgresl
+      property: password
+  - key: DB_USER
+    sync: false
+  region: frankfurt
+  buildCommand: npm i
+  startCommand: npm start
+version: "1"
